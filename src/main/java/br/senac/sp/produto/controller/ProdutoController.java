@@ -2,6 +2,9 @@ package br.senac.sp.produto.controller;
 
 import br.senac.sp.produto.model.Produto;
 import br.senac.sp.produto.repository.ProdutoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -129,6 +132,25 @@ public class ProdutoController {
         produtoRepository.deleteAll();
 
         return  ResponseEntity.noContent().build();
+
+    }
+
+    @GetMapping("paginador")
+    public ResponseEntity<Page<Produto>> getProdutosPaginado(
+            @RequestParam(defaultValue = "0") int pagina,
+            @RequestParam(defaultValue = "10") int itens,
+            @RequestParam(defaultValue = "id") String ordenarPor,
+            @RequestParam(defaultValue = "asc") String ordem
+    ){
+
+        var ordenacao = ordem.equalsIgnoreCase("asc") ? Sort.by(ordenarPor).ascending() :
+                Sort.by(ordenarPor).descending();
+
+        var paginador = PageRequest.of(pagina, itens, ordenacao);
+
+        var produtosPaginado = produtoRepository.findAll(paginador);
+
+        return ResponseEntity.ok().body(produtosPaginado);
 
     }
 
