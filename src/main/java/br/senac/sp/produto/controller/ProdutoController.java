@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -152,6 +153,25 @@ public class ProdutoController {
 
         return ResponseEntity.ok().body(produtosPaginado);
 
+    }
+
+    @GetMapping("/somar-precos/{lote}")
+    public ResponseEntity<BigDecimal> somarPrecosPorLote(@PathVariable(name = "lote") String lote) {
+
+        var produtosDoLote = produtoRepository.findByLote(lote);
+
+
+        if (produtosDoLote.isEmpty()) {
+            throw  new RuntimeException("LOTE NAO EXISTE");
+        }
+
+
+        BigDecimal somaPrecos = produtosDoLote.stream()
+                .map(Produto::getPreco)
+                .filter(Objects::nonNull)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        return ResponseEntity.ok(somaPrecos);
     }
 
 }
