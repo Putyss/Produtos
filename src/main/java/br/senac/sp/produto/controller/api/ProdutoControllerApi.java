@@ -1,5 +1,6 @@
-package br.senac.sp.produto.controller;
+package br.senac.sp.produto.controller.api;
 
+import br.senac.sp.produto.controller.ProdutoRequest;
 import br.senac.sp.produto.model.Produto;
 import br.senac.sp.produto.repository.ProdutoRepository;
 import org.springframework.data.domain.Page;
@@ -11,15 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("produtos")
-public class ProdutoController {
+public class ProdutoControllerApi {
 
     private final ProdutoRepository produtoRepository;
 
-    private  ProdutoController(ProdutoRepository repository){
+    private ProdutoControllerApi(ProdutoRepository repository){
         this.produtoRepository = repository;
     }
     @GetMapping("/get-produtos")
