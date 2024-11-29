@@ -3,6 +3,8 @@ package br.senac.sp.produto.controller.mvc;
 import br.senac.sp.produto.controller.ProdutoRequest;
 import br.senac.sp.produto.model.Produto;
 import br.senac.sp.produto.repository.ProdutoRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("produtos")
+@Tag(name = "Produto Controller MVC",
+        description = "Controller para Produtos na API")
 public class ProdutoControllerMvc {
 
     private final ProdutoRepository produtoRepository;
@@ -26,6 +30,8 @@ public class ProdutoControllerMvc {
     }
 
     @GetMapping("/listar")
+    @Operation(summary = "Exibir produtos",
+            description = "Retorna todos os produtos exitente")
     public String exibirProdutos(
             @RequestParam(defaultValue = "0") int page, // Página atual
             @RequestParam(defaultValue = "10") int size, // Tamanho da página
@@ -56,6 +62,8 @@ public class ProdutoControllerMvc {
     }
 
     @PostMapping("/salvar")
+    @Operation(summary = "Salvar",
+            description = "Salva o produto")
     public String salvarProduto(@ModelAttribute ProdutoRequest request, Model model){
         var p = new Produto().setDescricao(request.getDescricao())
                 .setPreco(request.getPreco())
@@ -69,6 +77,8 @@ public class ProdutoControllerMvc {
     }
 
     @GetMapping("/cadastro")
+    @Operation(summary = "Cadastrar",
+            description = "Cadastrar novos produtos")
     public String exibirFormulario(Model model){
         var request = new ProdutoRequest();
         model.addAttribute("produtoRequest", request);
