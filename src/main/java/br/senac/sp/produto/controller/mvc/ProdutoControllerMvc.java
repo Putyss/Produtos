@@ -24,6 +24,8 @@ public class ProdutoControllerMvc {
         this.produtoRepository = produtoRepository;
     }
 
+    @Operation(summary = "Index",
+            description = "Retorna o index dos produtos.")
     @GetMapping
     public String exibirPaginaInicial(Model model){
         return "index";
