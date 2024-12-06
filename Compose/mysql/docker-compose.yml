@@ -1,0 +1,15 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+#    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: produtodb
+      MYSQL_USER: produto
+      MYSQL_PASSWORD: produto
+    #volumes:
+      # Substitua o caminho abaixo pelo caminho absoluto no seu Windows
+      #- ./sql-scripts:/docker-entrypoint-initdb.d
+    ports:
+      - "4306:3306"
