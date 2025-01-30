@@ -2,14 +2,38 @@ services:
   mysql:
     image: mysql:8.0
     container_name: mysql-container
-#    restart: always
+    #    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: produtodb
       MYSQL_USER: produto
       MYSQL_PASSWORD: produto
-    #volumes:
+      #volumes:
       # Substitua o caminho abaixo pelo caminho absoluto no seu Windows
       #- ./sql-scripts:/docker-entrypoint-initdb.d
     ports:
-      - "4306:3306"
+      - "5306:3306"
+
+  adminer:
+    image: adminer:latest
+    container_name: adminer-container
+    #  restart: always
+    ports:
+      - "7080:8080"
+
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb-produto
+    restart: always
+    ports:
+      - "27017:27017" # Mapeia a porta local 27017 para a porta do container
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: produto # Usuário administrador do MongoDB
+      MONGO_INITDB_ROOT_PASSWORD: produto # Senha do administrador
+      MONGO_INITDB_DATABASE: produtodb   # Nome do banco de dados inicial
+    volumes:
+      - mongodb_data:/data/db # Persistência dos dados do MongoDB
+
+volumes:
+  mongodb_data:

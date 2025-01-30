@@ -6,6 +6,9 @@ import br.senac.sp.produto.repository.ProdutoRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -80,7 +83,7 @@ public class ProdutoControllerApi {
             throw  new RuntimeException("PRODUTO NAO EXISTE");
         }
 
-        p.setId(id);
+        p.setId(String.valueOf(id));
         p.setDescricao(request.getDescricao());
         p.setCodigoBarra(request.getCodigoBarra());
         p.setLote(request.getLote());
@@ -106,7 +109,7 @@ public class ProdutoControllerApi {
 
         var produtoBancoDados = produtoOptional.get();
 
-        produtoEntidade.setId(id);
+        produtoEntidade.setId(String.valueOf(id));
 
         produtoEntidade.setDescricao(Objects.isNull(request.getDescricao()) ?
                 produtoBancoDados.getDescricao() : request.getDescricao());
@@ -212,6 +215,30 @@ public class ProdutoControllerApi {
         }
 
         throw  new RuntimeException("ERROU, o numero certo era " + numeroGerado);
+    }
+
+    @PostMapping("/set-cookie")
+    public String setCookie(HttpServletResponse response) {
+        Cookie cookie = new Cookie("username", "john_doe");
+        cookie.setMaxAge(2 * 60); // cookie.setMaxAge(24 * 60 * 60); // Expira em 1 dia
+        cookie.setHttpOnly(true); // Apenas acessível via HTTP (não disponível para JS)
+        cookie.setPath("/"); // Disponível para toda a aplicação
+        response.addCookie(cookie);
+        return "Cookie configurado com sucesso!";
+    }
+
+
+    @GetMapping("/get-cookie")
+    public String getCookie(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("username".equals(cookie.getName())) {
+                    return "Cookie encontrado: " + cookie.getValue();
+                }
+            }
+        }
+        return "Nenhum cookie encontrado";
     }
 
 }

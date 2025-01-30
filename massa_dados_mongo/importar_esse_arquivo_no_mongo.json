@@ -1,0 +1,107 @@
+[
+  {
+    "descricao": "Produto 1",
+    "preco": 206.67,
+    "quantidade": 65,
+    "lote": "LOTE-001",
+    "codigo_barra": "789169122968"
+  },
+  {
+    "descricao": "Produto 2",
+    "preco": 88.84,
+    "quantidade": 60,
+    "lote": "LOTE-002",
+    "codigo_barra": "789899919310"
+  },
+  {
+    "descricao": "Produto 3",
+    "preco": 71.01,
+    "quantidade": 74,
+    "lote": "LOTE-003",
+    "codigo_barra": "789903250600"
+  },
+  {
+    "descricao": "Produto 4",
+    "preco": 424.23,
+    "quantidade": 100,
+    "lote": "LOTE-004",
+    "codigo_barra": "789208344637"
+  },
+  {
+    "descricao": "Produto 5",
+    "preco": 371.59,
+    "quantidade": 33,
+    "lote": "LOTE-005",
+    "codigo_barra": "789987046667"
+  },
+  {
+    "descricao": "Produto 6",
+    "preco": 281.18,
+    "quantidade": 94,
+    "lote": "LOTE-006",
+    "codigo_barra": "789835122058"
+  },
+  {
+    "descricao": "Produto 7",
+    "preco": 393.35,
+    "quantidade": 66,
+    "lote": "LOTE-007",
+    "codigo_barra": "789728920094"
+  },
+  {
+    "descricao": "Produto 8",
+    "preco": 334.49,
+    "quantidade": 1,
+    "lote": "LOTE-008",
+    "codigo_barra": "789937739165"
+  },
+  {
+    "descricao": "Produto 9",
+    "preco": 259.37,
+    "quantidade": 36,
+    "lote": "LOTE-009",
+    "codigo_barra": "789403243019"
+  },
+  {
+    "descricao": "Produto 10",
+    "preco": 256.71,
+    "quantidade": 6,
+    "lote": "LOTE-010",
+    "codigo_barra": "789833906526"
+  },
+  {
+    "descricao": "Produto 11",
+    "preco": 85.61,
+    "quantidade": 9,
+    "lote": "LOTE-011",
+    "codigo_barra": "789725567575"
+  },
+  {
+    "descricao": "Produto 12",
+    "preco": 296.99,
+    "quantidade": 57,
+    "lote": "LOTE-012",
+    "codigo_barra": "789980713067"
+  },
+  {
+    "descricao": "Produto 13",
+    "preco": 24.58,
+    "quantidade": 8,
+    "lote": "LOTE-013",
+    "codigo_barra": "789655819126"
+  },
+  {
+    "descricao": "Produto 14",
+    "preco": 392.13,
+    "quantidade": 94,
+    "lote": "LOTE-014",
+    "codigo_barra": "789199091911"
+  },
+  {
+    "descricao": "Produto 15",
+    "preco": 332.15,
+    "quantidade": 67,
+    "lote": "LOTE-015",
+    "codigo_barra": "789474262469"
+  }
+]

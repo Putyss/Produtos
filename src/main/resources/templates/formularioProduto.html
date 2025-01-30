@@ -64,6 +64,10 @@
     <h1>Cadastro de Produto</h1>
     <div th:if="${successMessage}" class="success" th:text="${successMessage}"></div>
     <form th:action="@{/produtos/salvar}" method="post" th:object="${produtoRequest}">
+
+        <!-- Campo oculto para o ID -->
+        <input type="hidden" name="id" th:value="${id}" th:field="*{id}">
+
         <div class="form-group">
             <label for="descricao">Descrição:</label>
             <input type="text" id="descricao" th:field="*{descricao}" placeholder="Descrição do produto" required>

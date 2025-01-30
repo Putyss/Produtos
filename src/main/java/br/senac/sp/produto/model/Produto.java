@@ -2,28 +2,34 @@ package br.senac.sp.produto.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.math.BigDecimal;
 
-@Entity
-@Table(name="produto")
+//@Entity
+//@Table(name = "produto")
+@Document(collection = "produto")
 public class Produto {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
-    private  String descricao;
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+    private String id;
+
+    private String descricao;
     private BigDecimal preco;
     private Integer quantidade;
-    private  String lote;
+    private String lote;
+    @Field("codigo_barra")
     @JsonProperty("codigo_barra")
-    private  String codigoBarra;
+    private String codigoBarra;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public Produto setId(Long id) {
+    public Produto setId(String id) {
         this.id = id;
         return this;
     }
@@ -68,7 +74,7 @@ public class Produto {
         return codigoBarra;
     }
 
-    public  Produto setCodigoBarra(String codigoBarra) {
+    public Produto setCodigoBarra(String codigoBarra) {
         this.codigoBarra = codigoBarra;
         return this;
     }
@@ -84,4 +90,5 @@ public class Produto {
                 ", codigoBarra='" + codigoBarra + '\'' +
                 '}';
     }
+
 }

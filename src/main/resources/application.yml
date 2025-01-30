@@ -1,21 +1,39 @@
 spring:
   application:
-    name: Loja-Produto
-  datasource:
-#    url: jdbc:h2:mem:produtodb
-#    driver-class-name: org.h2.Driver
-    urL: jdbc:mysql://localhost:4306/produtodb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: produto
-    password: produto
-  h2:
-      console:
-        enabled: true
-        path: /h2-console
-  jpa:
-      hibernate:
-        ddl-auto: none
-      show-sql: true
+    name: Loja-Produtos
+  data:
+    mongodb:
+      uri: mongodb://produto:produto@localhost:27017/produtodb?authSource=admin
+#  datasource:
+##    url: jdbc:h2:mem:produtodb
+##    driver-class-name: org.h2.Driver
+#    urL: jdbc:mysql://localhost:5306/produtodb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: produto
+#    password: produto
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console
+#  jpa:
+#    hibernate:
+#      dialect: org.hibernate.dialect.MySQL57Dialect
+#      ddl-auto: none
+#    show-sql: true
+#  web:
+#    resources:
+#      static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/
 
-  flyway:
+flyway:
+  enabled: true
+  baseline-on-migrate: true
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
     enabled: true
+#    path: /swagger-ui/index.html
+#    operationsSorter: method
+#    tagsSorter: name
