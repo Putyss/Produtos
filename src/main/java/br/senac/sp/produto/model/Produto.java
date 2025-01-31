@@ -7,14 +7,10 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.math.BigDecimal;
 
-//@Entity
-//@Table(name = "produto")
 @Document(collection = "produto")
 public class Produto {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
     private String id;
 
     private String descricao;
