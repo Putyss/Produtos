@@ -44,7 +44,7 @@ public class ProdutoControllerApi {
     @Operation(summary = "Recuperar por ID",
             description = "Recupera produto por ID")
     public ResponseEntity<Produto> recuperarPorId(@PathVariable(name = "idProduto") Long id){
-        Produto produto = produtoRepository.findById(id).orElseThrow(() -> new RuntimeException("ID NAO LOCALIZADO"));
+        Produto produto = produtoRepository.findById(String.valueOf(id)).orElseThrow(() -> new RuntimeException("ID NAO LOCALIZADO"));
         System.out.println(produto);
         return ResponseEntity.ok(produto);
     }
@@ -78,7 +78,7 @@ public class ProdutoControllerApi {
 
         Produto p = new Produto();
 
-        var produtoOptional = produtoRepository.findById(id);
+        var produtoOptional = produtoRepository.findById(String.valueOf(id));
         if (produtoOptional.isEmpty()){
             throw  new RuntimeException("PRODUTO NAO EXISTE");
         }
@@ -102,7 +102,7 @@ public class ProdutoControllerApi {
 
         Produto produtoEntidade = new Produto();
 
-        var produtoOptional = produtoRepository.findById(id);
+        var produtoOptional = produtoRepository.findById(String.valueOf(id));
         if (produtoOptional.isEmpty()){
             throw  new RuntimeException("PRODUTO NAO EXISTE");
         }
@@ -137,7 +137,7 @@ public class ProdutoControllerApi {
             description = "Deletar produtos")
     public ResponseEntity<Void> deletar(@PathVariable(name = "idProduto")Long id){
 
-        var produtoOptional = produtoRepository.findById(id);
+        var produtoOptional = produtoRepository.findById(String.valueOf(id));
         if (produtoOptional.isEmpty()){
             throw  new RuntimeException("PRODUTO NAO EXISTE");
         }
